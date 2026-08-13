@@ -29,15 +29,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class AuthTokenSerializer(serializers.Serializer):
-    email = serializers.CharField(label=("Email"), write_only=True)
+    email = serializers.CharField(label="Email", write_only=True)
     password = serializers.CharField(
-        label=("Password"),
+        label="Password",
         style={"input_type": "password"},
         trim_whitespace=False,
         write_only=True
     )
     token = serializers.CharField(
-        label=("Token"),
+        label="Token",
         read_only=True
     )
 
@@ -56,7 +56,7 @@ class AuthTokenSerializer(serializers.Serializer):
                 msg = ("Unable to log in with provided credentials.")
                 raise serializers.ValidationError(msg, code="authorization")
         else:
-            msg = ('Must include "username" and "password".')
+            msg = ('Must include "email" and "password".')
             raise serializers.ValidationError(msg, code="authorization")
 
         attrs["user"] = user

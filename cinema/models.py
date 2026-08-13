@@ -59,12 +59,6 @@ class Movie(models.Model):
         return self.title
 
 
-def movie_session_image_path(instance: "MovieSession", filename):
-    filename = (f"{slugify(instance.movie.title)}-{uuid.uuid4()}"
-                + pathlib.Path(filename).suffix)
-    return pathlib.Path("upload-image/") / pathlib.Path(filename)
-
-
 class MovieSession(models.Model):
     show_time = models.DateTimeField()
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
